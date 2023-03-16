@@ -9,8 +9,17 @@ public class PersonComparator implements Comparator<Person> {
 
     @Override
     public int compare(Person o1, Person o2) {
-        int w1 = o1.getSurname().split(" ").length;
-        int w2 = o2.getSurname().split(" ").length;
+        String[] s1 = o1.getSurname().split(" ");
+        String[] s2 = o2.getSurname().split(" ");
+        int w1 = 0;
+        int w2 = 0;
+        for (String s : s1) {
+            w1 += s.split("-").length;
+        }
+
+        for (String s : s2) {
+            w2 += s.split("-").length;
+        }
         if (w1 < MaxWords || w2 < MaxWords) {
             if (w1 < w2) {
                 return 1;
